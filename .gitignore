@@ -1,0 +1,9 @@
+.metadata/*
+Servers/*
+
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
