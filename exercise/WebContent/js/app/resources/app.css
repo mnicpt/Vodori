@@ -26,7 +26,7 @@ body {
 }
 
 .dijitDialogTitleBar {
-    background-color:#E45626;
+    background-color:#e45626;
     box-shadow:0 1px 5px #aaa;
     border-bottom:1px solid #999;
     height:25px;
@@ -39,6 +39,10 @@ body {
     right:10px;
     color:#fff;
     z-index:100;
+}
+.closeText {
+    text-shadow:0 -1px 1px #333;
+    -moz-text-shadow:0 -1px 1px #333;
 }
 #searchQueryWrapper {
     padding:20px 5%;
@@ -105,7 +109,7 @@ body {
     height:340px !important;
     overflow:auto;
     overflow-x:hidden;
-    margin:2% 6% 5% 6%;
+    margin:20px 6% 20px 6%;
 }
 .itemWrapper {
     
@@ -135,19 +139,36 @@ body {
     color:#aaa;
 }
 .pagination {
-    width:280px;
     padding:10px 5%;
+}
+.pagination a {
+    text-decoration:none;
+    color:#1589a4;
+}
+.pagination a:hover {
+    text-decoration:none;
+    color:#333;
 }
 .pagination .count {
     
-}.pagination .spacer {
-    
+}
+.pagination .selected.count {
+    text-decoration:underline;
+    color:#e45626;
+}
+.pagination .spacer {
+    display:inline-block;
+    width:20px;
 }
 .pagination .prev {
     
 }
 .pagination .index {
     
+}
+.pagination .selected.index {
+    text-decoration:underline;
+    color:#e45626;
 }
 .pagination .next {
     

@@ -50,7 +50,6 @@ define([ 'dojo/has', 'require' ], function(has, require) {
 				app.dialog = new SearchDialog({
 					title		: 'Search'
 				});
-				app.dialog.init();
 				app.dialog.placeAt(document.body);
 				app.dialog.startup();
 				app.dialog.show();
