@@ -27,22 +27,27 @@ define([ 'dojo',
 							    	"</div>" +
 							    	"<div data-dojo-attach-point=\"containerNode\" class=\"dijitDialogPaneContent\"></div>" +
 							    	"<div class=\"pagination\">" +
-							    		"<a class=\"selected count\" href=\"javascript:;\">10</a> | " +
-							    		"<a class=\"count\" href=\"javascript:;\">20</a> | " +
-							    		"<a class=\"count\" href=\"javascript:;\">50</a>" +
-							    		"<div class=\"spacer\">&nbsp;</div>" +
-							    		"<a class=\"prev\" href=\"javascript:;\"><< </a>" +
-							    		"<a class=\"selected index\" href=\"javascript:;\">1</a> " +
-							    		"<a class=\"index\" href=\"javascript:;\">2</a> " +
-							    		"<a class=\"index\" href=\"javascript:;\">3</a> " +
-							    		"<a class=\"index\" href=\"javascript:;\">4</a> " +
-							    		"<a class=\"index\" href=\"javascript:;\">5</a> " +
-							    		"<a class=\"next\" href=\"javascript:;\">>></a>" +
+							    		"<a class=\"selected count\" href=\"javascript:;\">5</a> | " +
+							    		"<a class=\"count\" href=\"javascript:;\">10</a> | " +
+							    		"<a class=\"count\" href=\"javascript:;\">20</a>" +
+							    		"<div class=\"pages\">" +
+								    		"<a class=\"prev\" href=\"javascript:;\"><< </a>" +
+								    		"<a class=\"selected index\" href=\"javascript:;\">1</a> " +
+								    		"<a class=\"index\" href=\"javascript:;\">2</a> " +
+								    		"<a class=\"index\" href=\"javascript:;\">3</a> " +
+								    		"<a class=\"index\" href=\"javascript:;\">4</a> " +
+								    		"<a class=\"index\" href=\"javascript:;\">5</a> " +
+								    		"<div class=\"dots\">...</span>" +
+								    		"<a class=\"next\" href=\"javascript:;\"> >></a>" +
+							    		"</div>" +
 						    		"</div>" +
 							    "</div>",
 		    	query       : '',
-		    	constructor	: function() {
-		    		this.inherited(arguments);
+		    	_position 	: function() {
+		    		//prevent dialog from shaking
+		    	},
+		    	layout		: function() {
+		    		//prevent dialog from shaking
 		    	},
 		    	postCreate	: function() {
 		    		this.inherited(arguments);
@@ -51,7 +56,7 @@ define([ 'dojo',
 		    		
 		    		on(query('.btn'), "click", function(e){
 		    			that.query = {text : that.searchQuery.value};
-		    			that.search(0, 10);
+		    			that.search(0, 5);
 		    		});
 		    		on(dojo.query('.count'), "click", function(e){
 		    			that.query = {text : that.searchQuery.value};
@@ -61,10 +66,16 @@ define([ 'dojo',
 		    			
 		    			//add selected class to clicked link
 		    			dojo.addClass(this, 'selected');
+		    			//reset indicies
 		    			
 		    			//get selected index
-		    			var selectedIndex = query('.index.selected');
-		    			that.search(selectedIndex[0].innerHTML - 1 + parseInt(this.innerHTML, 10), this.innerHTML);
+		    			var selectedIndex = parseInt(query('.selected.index')[0].innerHTML, 10);
+		    			if(selectedIndex == 1) {
+		    				selectedIndex = 0;
+		    			} else {
+		    				selectedIndex -= 1;
+		    			}
+		    			that.search(selectedIndex * this.innerHTML, this.innerHTML);
 		    		});
 		    		on(query('.index'), "click", function(e){
 		    			that.query = {text : that.searchQuery.value};
@@ -76,46 +87,79 @@ define([ 'dojo',
 		    			dojo.addClass(this, 'selected');
 		    			
 		    			//get selected count
-		    			var selectedCount = query('.selected.count');
-		    			that.search(parseInt(this.innerHTML) - 1 + selectedCount.innerHTML, selectedCount.innerHTML);
+		    			var selectedCount = parseInt(query('.selected.count')[0].innerHTML, 10);
+		    			var selectedIndex = parseInt(this.innerHTML,10);
+		    			if(selectedIndex == 1) {
+		    				selectedIndex = 0;
+		    			} else {
+		    				selectedIndex -= 1;
+		    			}
+		    			
+		    			that.search(selectedCount * selectedIndex, selectedCount);
 		    		});
 		    		on(query('.prev'), "click", function(e){
 		    			that.query = {text : that.searchQuery.value};
 		    			//get selected index
-		    			var selectedIndex = query('.selected.index');
+		    			var selectedIndex = query('.selected.index')[0];
 		    			
 		    			//remove selected class
 		    			dojo.removeClass(selectedIndex, 'selected');
 		    			
-		    			//add selected class to one before
-		    			dojo.addClass(this.prev(),'selected');
-		    			
 		    			//get selected count
-		    			var selectedCount = query('.selected.count');
-		    			var previous = parseInt(selectedIndex.innerHTML, 10) - 1;
-		    			that.search(previous + selectedCount.innerHTML, selectedCount.innerHTML);
+		    			var selectedCount = parseInt(query('.selected.count')[0].innerHTML, 10);
+		    			
+		    			//change all indices to be minus 5
+		    			if(parseInt(selectedIndex.innerHTML, 10) > 5) {
+			    			dojo.forEach(query('.index'), function(item) {
+			    				var currentValue = parseInt(item.innerHTML, 10);
+			    				item.innerHTML = currentValue - 5;
+						    });
+		    			
+			    			//add selected class to the first
+			    			var firstIndex = query('.index')[0];
+			    			dojo.addClass(firstIndex, 'selected');
+			    			
+			    			selectedIndex = parseInt(firstIndex.innerHTML, 10);
+			    			if(selectedIndex == 1) {
+			    				selectedIndex = 0;
+			    			}
+			    			that.search(selectedCount * selectedIndex, selectedCount);
+		    			} else {
+		    				//add selected class to the first
+			    			var firstIndex = query('.index')[0];
+			    			dojo.addClass(firstIndex, 'selected');
+			    			
+		    				that.search(0, selectedCount);
+		    			}
 		    		});
 		    		on(query('.next'), "click", function(e){
 		    			that.query = {text : that.searchQuery.value};
 		    			
 		    			//get selected index
-		    			var selectedIndex = query('.selected.index');
+		    			var selectedIndex = query('.selected.index')[0];
 		    			
 		    			//remove selected class
 		    			dojo.removeClass(selectedIndex, 'selected');
 		    			
-		    			//add selected class to one after
-		    			dojo.addClass(this.next(), 'selected');
+		    			//change all indices to be plus 5
+		    			dojo.forEach(query('.index'), function(item) {
+		    				var currentValue = parseInt(item.innerHTML, 10);
+		    				item.innerHTML = currentValue + 5;
+					    });
+		    			
+		    			//add selected class to the first
+		    			var firstIndex = query('.index')[0];
+		    			dojo.addClass(firstIndex, 'selected');
 		    			
 		    			//get selected count
-		    			var selectedCount = query('.selected.count');
-		    			var next = parseInt(selectedIndex.innerHTML, 10) + 1;
-		    			that.search(next + selectedCount.innerHTML, selectedCount.innerHTML);
+		    			var selectedCount = parseInt(query('.selected.count')[0].innerHTML, 10);
+		    			
+		    			var selectedIndex = parseInt(firstIndex.innerHTML, 10);
+		    			that.search(selectedCount * selectedIndex, selectedCount);
 		    		});
 		    	},
 		    	search 		: function(start, count) {
 		    		var that = this;
-		    		alert("count: " +count+ " start: " +start);
 		    		googleStore.WebSearch().fetch({
 						query : this.query,
 						count : count,
