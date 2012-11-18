@@ -9,9 +9,6 @@
     -moz-box-sizing:border-box;
     font-family:sans-serif;
 }
-body {
-    height:100%;
-}
 .dijitDialog {
     background-color:#fff;
     box-shadow:0 0 50px #aaa;
