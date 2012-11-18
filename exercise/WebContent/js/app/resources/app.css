@@ -75,8 +75,8 @@ body {
 .btn {
     float:left;
     display: inline-block;
-    background:-webkit-linear-gradient(top, #0088cc, #0044cc);
-    background:-moz-linear-gradient(top, #0088cc, #0044cc);
+    background:-webkit-linear-gradient(top, #009ec3 0%,#1589a4 99%);
+    background:-moz-linear-gradient(top, #009ec3 0%,#1589a4 99%);
     box-shadow:inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
     -webkit-box-shadow:inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
     -moz-box-shadow:inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
@@ -97,8 +97,8 @@ body {
     cursor:pointer;
 }
 .btn:hover {
-    background:-webkit-linear-gradient(top, #0044cc, #0088cc);
-    background:-moz-linear-gradient(top, #0044cc, #0088cc);
+    background:-webkit-linear-gradient(top, #1589a4 0%,#009ec3 99%);
+    background:-moz-linear-gradient(top, #1589a4 0%,#009ec3 99%);
 }
 .dijitDialogPaneContent {
     color:#555;
