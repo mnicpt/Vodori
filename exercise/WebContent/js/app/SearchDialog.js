@@ -66,9 +66,7 @@ define([ 'dojo',
 		    			
 		    			//add selected class to clicked link
 		    			dojo.addClass(this, 'selected');
-		    			//reset indicies
 		    			
-		    			//get selected index
 		    			var selectedIndex = parseInt(query('.selected.index')[0].innerHTML, 10);
 		    			if(selectedIndex == 1) {
 		    				selectedIndex = 0;
@@ -86,7 +84,6 @@ define([ 'dojo',
 		    			//add selected class to clicked link
 		    			dojo.addClass(this, 'selected');
 		    			
-		    			//get selected count
 		    			var selectedCount = parseInt(query('.selected.count')[0].innerHTML, 10);
 		    			var selectedIndex = parseInt(this.innerHTML,10);
 		    			if(selectedIndex == 1) {
@@ -151,7 +148,6 @@ define([ 'dojo',
 		    			var firstIndex = query('.index')[0];
 		    			dojo.addClass(firstIndex, 'selected');
 		    			
-		    			//get selected count
 		    			var selectedCount = parseInt(query('.selected.count')[0].innerHTML, 10);
 		    			
 		    			var selectedIndex = parseInt(firstIndex.innerHTML, 10);
