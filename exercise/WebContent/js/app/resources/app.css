@@ -150,9 +150,6 @@ body {
     text-decoration:none;
     color:#333;
 }
-.pagination .count {
-    
-}
 .pagination .selected.count {
     text-decoration:underline;
     color:#e45626;
@@ -164,18 +161,9 @@ body {
     display:inline-block;
     color:#1589a4;
 }
-.pagination .prev {
-    
-}
-.pagination .index {
-    
-}
 .pagination .selected.index {
     text-decoration:underline;
     color:#e45626;
-}
-.pagination .next {
-    
 }
 @media(max-width:799px) {
     .dijitDialog {
