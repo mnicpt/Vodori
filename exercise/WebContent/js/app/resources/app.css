@@ -10,7 +10,6 @@
     font-family:sans-serif;
 }
 body {
-    background: url('http://www-static.vodori.com/static/images/pieces/body.gif');
     height:100%;
 }
 .dijitDialog {
@@ -72,6 +71,9 @@ body {
     width: 80%;
     font-size: 18px;
 }
+#createDialogBtn {
+    width:145px;
+}
 .btn {
     float:left;
     display: inline-block;
@@ -102,7 +104,7 @@ body {
 }
 .dijitDialogPaneContent {
     color:#555;
-    height:340px !important;
+    height:345px !important;
     overflow:auto;
     overflow-x:hidden;
     margin:20px 6% 20px 6%;
