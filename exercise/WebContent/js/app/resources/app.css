@@ -111,10 +111,16 @@ body {
     font-weight:bold;
     font-size:18px;
 }
+.title a {
+    color:#1589a4;
+}
+.title a:hover {
+    color:#009ec3;   
+}
 .url {
     font-size:12px;
     font-style: italic;
-    color:green;
+    color:#009ec3;
 }
 .content {
     font-size:14px;
