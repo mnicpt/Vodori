@@ -20,9 +20,9 @@ body {
     border-top-color:#ccc;
     border-left-color:#ccc;
     border-bottom:5px solid #E45626;
-    width: 80%;
+    width: 60%;
     height: 500px;
-    margin:0px 10%;
+    margin:0px 20%;
     top:60px;
 }
 .dijitDialogTitleBar {
@@ -175,7 +175,11 @@ body {
 .pagination .next {
     
 }
-@media(max-width:599px) {
+@media(max-width:799px) {
+    .dijitDialog {
+        width:80%;
+        margin:0 10%;
+    }
     .dijitDialogTitle {
         float:none;
     }
